@@ -14,11 +14,13 @@ protected: // create from serialization only
 // Attributes
 public:
 	CVisualProjectDoc* GetDocument() const;
-
-// Operations
+	
+	// Operations
 public:
 
-// Overrides
+	void DrawEllipse(int x, int y, int r);
+	BOOL DrawFunc();
+	// Overrides
 public:
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
