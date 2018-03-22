@@ -56,6 +56,7 @@ void CVisualProjectView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: add draw code for native data here
+	DrawFunc();
 }
 
 void CVisualProjectView::OnRButtonUp(UINT /* nFlags */, CPoint point)
@@ -90,7 +91,28 @@ CVisualProjectDoc* CVisualProjectView::GetDocument() const // non-debug version 
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CVisualProjectDoc)));
 	return (CVisualProjectDoc*)m_pDocument;
 }
+
+
 #endif //_DEBUG
 
 
 // CVisualProjectView message handlers
+
+void CVisualProjectView::DrawEllipse(int x, int y, int r)
+{
+	CClientDC dc(this);
+	CBrush brush, *oldbrush;
+	brush.CreateSolidBrush(RGB(0xD1, 0xFB, 0xED));
+	oldbrush = dc.SelectObject(&brush);
+	dc.Ellipse(x - r, y - r, x + r, y + r);
+	dc.SelectObject(oldbrush);
+}
+
+BOOL CVisualProjectView::DrawFunc()
+{
+	//Draw what i want to show
+
+	DrawEllipse(100, 100, 50);
+
+	return TRUE;
+}
